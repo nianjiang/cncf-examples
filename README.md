@@ -1,3 +1,3 @@
 # cncf-examples
 
-This is a test on 2026/8/11 001
+This is test code for cncf projects.
