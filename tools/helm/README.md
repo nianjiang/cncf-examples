@@ -1,5 +1,7 @@
 # Helm Chart — my-app
 
+> [Kubernetes 配置管理工具：Kustomize & Helm](https://nianjiang.github.io/docs/70-CNCF/99-CI-CD/99-KustomizeHelm/#helm)
+
 本 Chart 是 kustomize 示例 `tools/kustomize/` 的等效 Helm 实现，演示同一应用在两种工具下的配置对比。
 
 ## 目录结构

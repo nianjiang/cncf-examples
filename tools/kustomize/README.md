@@ -1,5 +1,7 @@
 # Kustomize Deployment + Service 模板示例
 
+> [Kubernetes 配置管理工具：Kustomize & Helm](https://nianjiang.github.io/docs/70-CNCF/99-CI-CD/99-KustomizeHelm/)
+
 本目录演示如何使用 [Kustomize](https://kustomize.io/) 的 **base + overlays** 模式对 Kubernetes Deployment + Service 进行多环境定制化管理。
 
 ## 目录结构
