@@ -1,0 +1,45 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# 引用基础配置
+resources:
+- ../../base
+
+# Dev 环境专属前缀
+namePrefix: dev-
+
+# Dev 环境命名空间
+namespace: default
+
+# Dev 环境标签
+labels:
+- includeSelectors: true
+  pairs:
+    env: dev
+
+# 镜像替换（Dev 环境使用国内镜像源加速）
+images:
+- name: nginx
+  newName: m.daocloud.io/docker.io/library/nginx
+  newTag: "1.31"
+
+# 环境变量覆盖（Dev 环境）
+patches:
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: my-app
+    spec:
+      template:
+        spec:
+          containers:
+          - name: nginx
+            env:
+            - name: env
+              value: dev
+            - name: databaseURL
+              value: mysql://dev-db:3306/myapp
+  target:
+    kind: Deployment
+    name: my-app

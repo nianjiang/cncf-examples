@@ -1,0 +1,58 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# 引用基础配置
+resources:
+- ../../base
+
+# Prod 环境专属前缀
+namePrefix: prod-
+
+# Prod 环境命名空间
+namespace: test-anquan
+
+# Prod 环境标签
+labels:
+- includeSelectors: true
+  pairs:
+    env: prod
+
+# 镜像替换（Prod 环境使用官方镜像源）
+images:
+- name: nginx
+  newName: m.daocloud.io/docker.io/library/nginx
+  newTag: "1.27"
+
+# Prod 环境副本数
+replicas:
+- name: my-app
+  count: 2
+
+# 环境变量覆盖（Prod 环境）
+patches:
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: my-app
+    spec:
+      template:
+        spec:
+          containers:
+          - name: nginx
+            env:
+            - name: env
+              value: prod
+            - name: databaseURL
+              value: mysql://prod-db:3306/myapp
+            # Prod 环境提升资源配额
+            resources:
+              requests:
+                cpu: 500m
+                memory: 512Mi
+              limits:
+                cpu: 1000m
+                memory: 1Gi
+  target:
+    kind: Deployment
+    name: my-app
