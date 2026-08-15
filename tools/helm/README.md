@@ -64,8 +64,8 @@ helm template org-myapp-prod ./my-app -f ./my-app/values-prod.yaml
 # Dev 环境（default 命名空间）
 helm install org-myapp-dev ./my-app -f ./my-app/values-dev.yaml -n default
 
-# Prod 环境（test-anquan 命名空间）
-helm install org-myapp-prod ./my-app -f ./my-app/values-prod.yaml -n test-anquan
+# Prod 环境（Prod 命名空间）
+helm install org-myapp-prod ./my-app -f ./my-app/values-prod.yaml -n {Prod}
 ```
 
 ### List
@@ -78,14 +78,14 @@ helm list -A --filter 'org-myapp'
 
 ```bash
 helm upgrade org-myapp-dev ./my-app -f ./my-app/values-dev.yaml -n default
-helm upgrade org-myapp-prod ./my-app -f ./my-app/values-prod.yaml -n test-anquan
+helm upgrade org-myapp-prod ./my-app -f ./my-app/values-prod.yaml -n {Prod}
 ```
 
 ### 卸载
 
 ```bash
 helm uninstall org-myapp-dev -n default
-helm uninstall org-myapp-prod -n test-anquan
+helm uninstall org-myapp-prod -n {Prod}
 ```
 
 ## Dev 与 Prod 配置对比
@@ -93,7 +93,7 @@ helm uninstall org-myapp-prod -n test-anquan
 | 配置项 | Dev | Prod |
 |--------|-----|------|
 | Release 名称 | `org-myapp-dev` | `org-myapp-prod` |
-| 命名空间 | `default` | `test-anquan` |
+| 命名空间 | `default` | `{Prod}` |
 | 副本数 | 1 | 2 |
 | 镜像 | `m.daocloud.io/.../nginx:1.31` | `m.daocloud.io/.../nginx:1.27` |
 | env | `dev` | `prod` |
@@ -109,5 +109,5 @@ helm uninstall org-myapp-prod -n test-anquan
 export HELM_KUBECONTEXT=devops-ack
 
 ```bash
-helm --kubeconfig=<KubeConfig Path> get ns
+helm --kubeconfig=<KubeConfig Path> list
 ```
