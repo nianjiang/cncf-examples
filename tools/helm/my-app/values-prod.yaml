@@ -1,0 +1,30 @@
+# Prod 环境值 — 对应 kustomize overlays/prod
+# 使用方式: helm install org-myapp-prod . -f values-prod.yaml -n test-anquan
+
+# Prod 环境镜像
+image:
+  repository: m.daocloud.io/docker.io/library/nginx
+  tag: "1.27"
+
+# Prod 环境副本数
+replicaCount: 2
+
+# Prod 环境变量
+env:
+  env: prod
+  databaseURL: mysql://prod-db:3306/myapp
+
+# Prod 环境提升资源配额
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+
+# Prod 环境标签
+envName: prod
+labels:
+  managed-by: helm
+  env: prod

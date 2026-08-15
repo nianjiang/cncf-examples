@@ -1,0 +1,6 @@
+apiVersion: v2
+name: my-app-helm
+description: A Helm chart for my-app (equivalent to kustomize example)
+type: application
+version: 0.1.0
+appVersion: "1.25"

@@ -129,7 +129,7 @@ kubectl get pods -n test-anquan -l env=prod
 
 ## 关于多K8s集群连接问题
 
-不同的K8s集群使用不同的KubeConfig，使用kubeconfig参数：
+不同的K8s集群引用不同的KubeConfig文件，即使用kubeconfig参数：
 
 ```bash
 kubectl --kubeconfig=<KubeConfig Path> get ns
