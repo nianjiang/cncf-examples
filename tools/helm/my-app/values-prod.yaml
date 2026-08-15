@@ -1,5 +1,5 @@
 # Prod 环境值 — 对应 kustomize overlays/prod
-# 使用方式: helm install org-myapp-prod . -f values-prod.yaml -n test-anquan
+# 使用方式: helm install org-myapp-prod . -f values-prod.yaml -n {Prod}
 
 # Prod 环境镜像
 image:

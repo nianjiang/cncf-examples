@@ -9,7 +9,7 @@ resources:
 namePrefix: prod-
 
 # Prod 环境命名空间
-namespace: test-anquan
+namespace: {Prod}
 
 # Prod 环境标签
 labels:
