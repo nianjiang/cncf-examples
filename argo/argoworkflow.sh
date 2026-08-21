@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# curl -s https://raw.githubusercontent.com/argoproj-labs/training-material/main/argo-workflows/install.sh | sh
+
 install() {
     kubectl create ns argo
     kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.7.6/install.yaml
